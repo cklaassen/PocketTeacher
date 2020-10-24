@@ -19,12 +19,13 @@ async function createWindow () {
         height: 400,
         webPreferences: {
             nodeIntegration: true
-        }
+        },
+        icon:'assets/logo.png'
     })
     win.loadFile('Load/index.html')
     // win.webContents.openDevTools()
-    // await sleep(3000)
-    // win.loadFile('Home/home.html')
+    await sleep(1000)
+    win.loadFile('Home/home.html')
 }
 
 app.whenReady().then(createWindow)
