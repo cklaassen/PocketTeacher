@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow, ipcMain } = require('electron')
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -39,5 +39,13 @@ app.on('window-all-closed', () => {
 app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) {
         createWindow()
+    }
+})
+
+ipcMain.on('online-status-changed', (event, status) => {
+    if (status === "online") {
+        console.log("Go U");
+    } else if (status === "offline") {
+        console.log("That is an oof");
     }
 })
